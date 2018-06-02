@@ -1,5 +1,5 @@
-.git.idea__pycache__temp/tmp/log/checkpoint/data/
-# Tensorflow train data
-*.tfrecord
-*.ckpt*
-*.pkl
+.git
+.idea
+__pycache__
+temp/
+tmp/
