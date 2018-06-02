@@ -1,0 +1,7 @@
+[submodule "gates"]
+	path = gates
+	url = https://github.com/mipo47/gates.git
+	branch = master
+[submodule "proben1"]
+	path = proben1
+	url = https://github.com/jeffheaton/proben1.git
