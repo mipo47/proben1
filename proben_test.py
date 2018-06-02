@@ -1,4 +1,4 @@
-from gates.proben1 import *
+from proben1_reader import *
 from gates.trainer import train_model
 from proben_data import * # gates engine
 # from proben_data_tf import * # tensorflow engine

@@ -1,4 +1,4 @@
-from gates.proben1 import *
+from proben1_reader import *
 from proben_slim_data import *
 
 # choose dataset to train
