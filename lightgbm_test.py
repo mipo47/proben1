@@ -1,3 +1,5 @@
+from sklearn.metrics import log_loss, accuracy_score
+
 from proben1_reader import *
 from proben_data import * # gates engine
 import lightgbm as lgb
@@ -29,3 +31,10 @@ model.fit(
     eval_set=(validation.inputs, y_val),
     early_stopping_rounds=10
 )
+
+y_pred = model.predict_proba(validation.inputs)
+loss = log_loss(validation.outputs, y_pred)
+
+y_pred = model.predict(validation.inputs)
+score = accuracy_score(y_val, y_pred)
+print(model.__class__.__name__, "Score / Loss", score, loss)
