@@ -1,10 +1,9 @@
 from proben1_reader import *
-from gates.trainer import train_model
 from proben_data import * # gates engine
-# from proben_data_tf import * # tensorflow engine
+import catboost
 
 # choose dataset to train
-DATASET = DATA_INFO.card
+DATASET = DATA_INFO.soybean
 
 # gets same result on each run
 np.random.seed(0)
@@ -17,4 +16,15 @@ train, validation, test = read_proben1(data_path)
 print("loaded data", data_name, train.length(), validation.length(), test.length())
 print("input/output count", train.input_count(), train.output_count())
 
-train_model(data_info, train, validation, test, display_L2_loss=False)
+model = catboost.CatBoostClassifier(
+    iterations=10000,
+    verbose=100
+)
+
+y_train = np.argmax(train.outputs, axis=1)
+y_val = np.argmax(validation.outputs, axis=1)
+
+model.fit(
+    train.inputs, y_train,
+    eval_set=(validation.inputs, y_val),
+)
